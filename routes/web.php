@@ -20,8 +20,13 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'sumber'], function () use ($router) {
     $router->post('/', ['uses' => 'SumberController@createSumber']);
     $router->get('/{id}', ['uses' => 'SumberController@getSumberById']);
-    });
+    $router->patch('/{id}', ['uses' => 'SumberController@updateSumber']);
+    $router->delete('/{id}', ['uses' => 'SumberController@deleteSumber']);
+});
     
 $router->group(['prefix' => 'history_produksi'], function () use ($router) {
-$router->post('/', ['uses' => 'HistoryProduksiController@createHistory']);
-    });
+    $router->post('/', ['uses' => 'HistoryProduksiController@createHistory']);
+    $router->get('/{id}', ['uses' => 'HistoryProduksiController@getHistoryProduksiById']);
+    $router->patch('/{id}' , ['uses' => 'HistoryProduksiController@updateHistory']);
+    $router->delete('/{id}', ['uses' => 'HistoryProduksiController@deleteHistory']);
+});
