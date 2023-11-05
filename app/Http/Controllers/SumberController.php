@@ -19,7 +19,7 @@ class SumberController extends Controller
 
     public function createSumber(Request $request)
     {
-        $post = Sumber::create([
+        $sumber = Sumber::create([
             'nama_sumber' => $request->nama_sumber,
             'lokasi' => $request->lokasi,
             'jenis_produk' => $request->jenis_produk,
@@ -29,29 +29,61 @@ class SumberController extends Controller
             'success' => true,
             'message' => 'New Sumber created',
             'data' => [
-                'sumber' => $sumber,
+                'sumber' => $sumber
             ],
         ]);
     }
 
     public function getSumberById(Request $request)
     {
-        $post = Sumber::find($request->id);
+        $sumber = Sumber::find($request->id);
 
         return response()->json([
             'success' => true,
             'message' => 'Sumber retrieved',
             'data' => [
                 'sumber' => [
-                    'id' => $post->id,
-                    'nama_sumber' => $post->nama_sumber,
-                    'lokasi' => $post->lokasi,
-                    'jenis_produk' => $post->jenis_produk,
-                    'hasil_produksi' => $post->hasil_produksi,
-                    'tahun' => $post->tahun,
+                    'id' => $sumber->id,
+                    'nama_sumber' => $sumber->nama_sumber,
+                    'lokasi' => $sumber->lokasi,
+                    'jenis_produk' => $sumber->jenis_produk,
+                    'hasil_produksi' => $sumber->hasil_produksi,
+                    'tahun' => $sumber->tahun,
                 ],
             ],
         ]);
     }
 
+    public function updateSumber(Request $request, $id) 
+    {
+        Sumber::where('id', $id)->update([
+            'nama_sumber' => $request->nama_sumber,
+            'lokasi' => $request->lokasi,
+            'jenis_produk' => $request->jenis_produk
+        ]);
+
+        $newSumber = Sumber::find($id);
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'New Sumber is updated',
+            'data' => [
+                'sumber' => $newSumber,
+            ],
+        ], 200);
+    }
+
+    public function deleteSumber($id)
+    {
+        $sumber = Sumber::find($id);
+        $sumber->delete();
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Sumber has been deleted',
+            'data' => [
+                'sumber' => $sumber,
+            ],
+        ],200);
+    }
 }
