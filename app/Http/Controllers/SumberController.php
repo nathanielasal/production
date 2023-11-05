@@ -31,7 +31,20 @@ class SumberController extends Controller
             'data' => [
                 'sumber' => $sumber
             ],
-        ]);
+        ], 200);
+    }
+
+    public function getAllSumber()
+    {
+        $sumber = Sumber::all();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All Sumber grabbed',
+            'data' => [
+                'sumber' => $sumber
+            ],
+        ], 200);
     }
 
     public function getSumberById(Request $request)
@@ -51,7 +64,7 @@ class SumberController extends Controller
                     'tahun' => $sumber->tahun,
                 ],
             ],
-        ]);
+        ], 200);
     }
 
     public function updateSumber(Request $request, $id) 

@@ -21,6 +21,6 @@ class HistoryProduksi extends Model
 
     public function sumber()
     {
-        return $this->belongsTo(Sumber::class, 'sumberId');
+        return $this->belongsTo(Sumber::class, $sumberId);
     }
 }

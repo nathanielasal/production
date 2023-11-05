@@ -31,7 +31,20 @@ class HistoryProduksiController extends Controller
             'data' => [
                 'history_produksi' => $history_produksi,
             ],
-        ]);
+        ], 200);
+    }
+
+    public function getAllHistoryProduksi()
+    {
+        $history_produksi = HistoryProduksi::all();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All History grabbed',
+            'data' => [
+                'history' => $history_produksi
+            ],
+        ], 200);
     }
 
     public function getHistoryProduksiById(Request $request)
@@ -49,7 +62,7 @@ class HistoryProduksiController extends Controller
                     'sumberId' => $historyProduksi->sumberId,
                 ],
             ],
-        ]);
+        ], 200);
     }
 
     public function updateHistory(Request $request, $id) 
@@ -78,7 +91,7 @@ class HistoryProduksiController extends Controller
 
         return response()->json([
             'status' => 'Success',
-            'message' => 'Sumber has been deleted',
+            'message' => 'History has been deleted',
             'data' => [
                 'history_produksi' => $historyProduksi,
             ],

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sumber extends Model
+class Produksi extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Sumber extends Model
      * @var array
      */
     protected $fillable = [
-        'nama_sumber', 'lokasi', 'jenis_produk'
+        'target', 'progress'
     ];
 
     /**
@@ -22,9 +22,9 @@ class Sumber extends Model
      */
     protected $hidden = [];
 
-    public function history_produksi()
+    public function sumber()
     {
-        return $this->hasMany(HistoryProduksi::class, $sumberId);
+        return $this->belongsTo(Sumber::class, $sumberId);
     }
     
 }
