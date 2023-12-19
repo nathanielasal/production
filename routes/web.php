@@ -39,4 +39,6 @@ $router->group(['prefix' => 'produksi'], function () use ($router) {
     $router->get('/{id}', ['uses' => 'ProduksiController@getProduksiById']);
     $router->patch('/{id}' , ['uses' => 'ProduksiController@updateProduksi']);
     $router->delete('/{id}', ['uses' => 'ProduksiController@deleteProduksi']);
+    $router->put('/{id}/sumber/{sumberId}', ['uses' => 'ProduksiController@addSumber']); //
+       
 });

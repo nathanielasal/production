@@ -24,7 +24,11 @@ class Sumber extends Model
 
     public function history_produksi()
     {
-        return $this->hasMany(HistoryProduksi::class, $sumberId);
+        return $this->hasMany(HistoryProduksi::class, 'sumberId');
     }
     
+    public function produksi()
+    {
+        return $this->belongsToMany(Produksi::class, 'produksi_sumbers', 'sumberId', 'produksiId');
+    }
 }

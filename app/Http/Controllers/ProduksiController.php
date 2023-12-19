@@ -54,11 +54,12 @@ class ProduksiController extends Controller
             'success' => true,
             'message' => 'Product has been retrieved',
             'data' => [
-                'history' => [
+                'produksi' => [
                     'id' => $produksi->id,
                     'target' => $produksi->target,
                     'progress' => $produksi->progress,
-                ],
+                    'sumber' => $produksi->sumber, //response sumber
+                ]
             ],
         ], 200);
     }
@@ -94,4 +95,15 @@ class ProduksiController extends Controller
             ],
         ],200);
     }
+
+    public function addSumber(Request $request)
+    {
+        $produksi = Produksi::find($request->id);
+        $produksi->sumber()->attach($request->sumberId);
+        return response()->json([
+            'success' => true,
+            'message' => 'Sumber added to produksi',
+        ]);
+    }
+
 }

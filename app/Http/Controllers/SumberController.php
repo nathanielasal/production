@@ -62,6 +62,8 @@ class SumberController extends Controller
                     'jenis_produk' => $sumber->jenis_produk,
                     'hasil_produksi' => $sumber->hasil_produksi,
                     'tahun' => $sumber->tahun,
+                    'history_produksi' => $sumber->history_produksi, //one to many history produksi 
+                    'produksi' => $sumber->produksi, //many to many produksi
                 ],
             ],
         ], 200);
